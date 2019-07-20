@@ -19,7 +19,7 @@ class Device(models.Model):
   loud_speaker = models.BooleanField()
   wlan = models.CharField(max_length=100)
   bluetooth = models.CharField(max_length=100)
-  usb = models.CharField(max_length=100)
+  cpu = models.CharField(max_length=100)
   battery_c = models.CharField(max_length=100)
   sensor = models.CharField(max_length=100)
   cup = models.CharField(max_length=100)
