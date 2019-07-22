@@ -1,0 +1,8 @@
+{% if user.is_authenticated %}
+    <a href="/sign-out/">LogOut</a>
+    Logged In
+{% else %}
+    <a href="/sign-in/">Sign-In</a>
+    <a href="/sign-up/">Sign-Up</a>
+    Not Logged In
+{% endif %}
