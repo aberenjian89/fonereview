@@ -2,17 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 # Create your views here.
 import requests
-
-def home(request):
-    return render(request,'base.html',{'user': request.user})
-
-
-def get_device_info(request):
-    data = requests.get('https://fonoapi.freshpixl.com/v1/getlatest?token=75e16f79f00c963f2427b8651b176e70261baa6dac478d78')
-    devices = data.json()
-
-
-    return render(request,'pages/all_device.html',{'devices': devices})
 from django.http import HttpResponse
 
 # List of phones for featured listing
@@ -56,6 +45,13 @@ featured_phones = [
 ]
 
 
+
+def get_device_info(request):
+    data = requests.get('https://fonoapi.freshpixl.com/v1/getlatest?token=75e16f79f00c963f2427b8651b176e70261baa6dac478d78')
+    devices = data.json()
+    return render(request,'pages/all_device.html',{'devices': devices})
+
+
 def fonereview_homepage(request):
     context = {
 
@@ -65,34 +61,6 @@ def fonereview_homepage(request):
 
     }
     return render(request, 'pages/recent_phone.html', context)
-
-
-def fonereview_register(request):
-    context = {
-        'title': 'Fone Review - Register - New User',
-        'logo': 'static/app/images/logo_bg.jpg'
-
-    }
-    return render(request, 'pages/register.html', context)
-
-
-def fonereview_login(request):
-    context = {
-        'title': 'Fone Review - Login for Existing Users',
-        'logo': 'static/app/images/logo_bg.jpg',
-        'icon': 'static/app/images/usericon.svg'
-
-    }
-    return render(request, 'pages/login.html', context)
-
-
-def fonereview_logout(request):
-    context = {
-        'title': 'Fone Review - Thank you for visiting',
-        'logo': 'static/app/images/logo_bg.jpg'
-
-    }
-    return render(request, 'pages/logout.html', context)
 
 
 def fonereview_about(request):

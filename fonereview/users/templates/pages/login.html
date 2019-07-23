@@ -1,4 +1,4 @@
-{% extends 'app/tempates/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 	<div id="colorlib-main">
@@ -15,13 +15,16 @@
 
 							<!-- Icon -->
 							<div class="fadeIn first">
-							<!--<img src="{% static 'app/images/usericon.svg' %}" id="icon" alt="User Icon" />-->
+							<!-- <img src="{% static 'app/images/usericon.svg' %}" id="icon" alt="User Icon" /> -->
 							</div>
 
 							<!-- Login Form -->
-							<form>
-							<input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-							<input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+							<form action="." method="POST">
+								{{ form.errors }}
+								{% csrf_token %}
+								<!-- {{ form }} -->
+							<input type="text" id="id_username" class="fadeIn second" name="username" required placeholder="Username">
+							<input type="password" id="id_password" class="fadeIn third" name="password" required placeholder="Password">
 							<input type="submit" class="fadeIn fourth" value="Log In">
 							</form>
 

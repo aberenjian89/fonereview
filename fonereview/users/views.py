@@ -28,7 +28,6 @@ class UserEditProfile(forms.ModelForm):
 			'last_name',
 		]
 
-
 def register(request):
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
@@ -37,7 +36,7 @@ def register(request):
 			login(request, user)
 			return redirect('home')
 		else:
-			return redirect('home')
+			return render(request,'pages/register.html',{'form': form})
 
 	else:
 		form = SignUpForm()
@@ -51,7 +50,7 @@ def login_in(request):
 			login(request, form.get_user())
 			return redirect('home')
 		else:
-			return redirect('home')
+			return render(request,'pages/login.html',{'form': form})
 	else:
 		if request.user.is_authenticated:
 			return redirect('home')
