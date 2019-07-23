@@ -41,7 +41,7 @@ def register(request):
 
 	else:
 		form = SignUpForm()
-		return render(request, 'pages/sign_up.html', {'form': form})
+		return render(request, 'pages/register.html', {'form': form})
 
 
 def login_in(request):
@@ -58,7 +58,7 @@ def login_in(request):
 		else:
 
 			form = AuthenticationForm()
-			return render(request, 'pages/sign_in.html', {'form': form})
+			return render(request, 'pages/login.html', {'form': form})
 
 
 @login_required(login_url='/sign-in/')
