@@ -1,0 +1,14 @@
+
+
+{% for device in devices %}
+    <ul>
+        <li>Device Name: {{ device.DeviceName }}</li>
+        <li>Brand: {{ device.Brand }}</li>
+        <li>Technology: {{ device.technology }}</li>
+        <li>GPRS: {{ device.gprs }}</li>
+        <li>Edge: {{ device.edge }}</li>
+        <li>Announced: {{ device.announced }}</li>
+        <li>Status: {{ device.status }}</li>
+    </ul>
+<hr/>
+{% endfor %}

@@ -24,6 +24,7 @@ urlpatterns = [
     path('sign-in/', User_views.login_in, name='login'),
     path('sign-out/', User_views.log_out, name='logout'),
     path('edit-profile/',User_views.edit_profile),
+    path('getlatest/',App_views.get_device_info),
     path('admin/', admin.site.urls),
 ]
 
