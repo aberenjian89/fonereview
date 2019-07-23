@@ -29,8 +29,8 @@ def fonereview_device_single(request,device_id):
     if request.method == 'POST':
         pass
     else:
-
-        return render(request,'pages/single.html',{})
+        device = Device.objects.get(id=device_id)
+        return render(request,'pages/single.html',{'device': device})
 
 def fonereview_about(request):
     context = {
