@@ -26,6 +26,7 @@ class Device(models.Model):
   internal_memory = models.CharField(max_length=100)
   os = models.CharField(max_length=100)
   image = models.FileField(upload_to="device_images/",null=True,blank=True)
+  total_rating = models.DecimalField(max_digits=2,decimal_places=1,null=True,blank=True)
 
 class Comment(models.Model):
   description = models.CharField(max_length=160)
@@ -40,6 +41,9 @@ class Comment(models.Model):
     on_delete = models.CASCADE
   )
 class Rate(models.Model):
+  # User Rate Type 
+    # 1 : Admin Or SuperAdmin 
+    # 2 : Regular User
   user_rate_type = models.IntegerField()
   rating = models.IntegerField()
 

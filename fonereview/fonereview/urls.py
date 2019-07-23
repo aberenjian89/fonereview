@@ -27,6 +27,7 @@ urlpatterns = [
     path('sign-out/', User_views.log_out, name='logout'),
     path('edit-profile/',User_views.edit_profile),
     path('getlatest/',App_views.get_device_info),
+    path('device/<device_id>/',App_views.fonereview_device_single,),
     path('admin/', admin.site.urls),
 ]
 

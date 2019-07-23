@@ -1,10 +1,25 @@
 import requests
-from app.models import Device
-import time
+from app.models import (
+    Device,
+    Rate
+)
+import random
+from  django.contrib.auth.models import User
 
 
 
 def run():
+    User.objects.all().delete()
+    Device.objects.all().delete()
+    regular_user = User.objects.create(
+        username = "Doe89",
+        password = "Admin123",
+    )
+    admin_user = User.objects.create(
+        username = "Salem89",
+        password = "123Admin",
+        is_superuser = True
+    )    
     devices = requests.get(
           'https://fonoapi.freshpixl.com/v1/getlatest?token=75e16f79f00c963f2427b8651b176e70261baa6dac478d78')
     for device in devices.json():
@@ -120,8 +135,8 @@ def run():
             os = 'Not Avaliable'
 
 
-
-        Device.objects.create(
+        rate = (random.randrange(10,50))/10
+        dev=Device.objects.create(
             name = name,
             brand = brand,
             technology = technology,
@@ -144,6 +159,16 @@ def run():
             gpu = gpu,
             internal_memory = internal_memory,
             os = os, 
+            total_rating = rate,
         )   
+        Rate.objects.create(
+            device = dev,
+            user = admin_user,
+            rating = int(rate),
+            user_rate_type = 2
+        )
+
+        
+        
 
     print("Done Seeding!....")
