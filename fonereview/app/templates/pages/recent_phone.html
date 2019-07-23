@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div id="colorlib-main">
+
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+
+	    	<div class="container">
+			{% for phone in featured_phones %}
+	    		<div class="row d-flex">
+	    			<div class="col-xl-8 py-5 px-md-5">
+
+	    				<div class="row pt-md-4">
+			    			<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url({{ phone.image }});"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">{{ phone.type }}</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+
+				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>Rating: {{ phone.rating }}</a></span>
+				              		<span><i class="icon-comment2 mr-2"></i>Total Reviews: {{ phone.number_of_reviews }}</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">Description: {{ phone.description }}</p>
+				              <p><a href="#" class="btn-custom">See Full Reviews<span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+
+			    		</div><!-- END-->
+
+			    	</div>
+
+	          </div><!-- END COL -->
+			  {% endfor %}
+	    		</div>
+			</section>
+		</div>
+
+{% endblock content %}
