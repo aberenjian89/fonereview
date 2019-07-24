@@ -25,7 +25,7 @@ SECRET_KEY = '8)29x0s9j%h+!k3xb6)vn%&wc8-1$=6^!p=9z1s*9s^$ax%z@l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -73,15 +73,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'fonereview.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
@@ -118,5 +109,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'app/')
+]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'fonereview')
+
+# Database
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+if 'DYNO' in os.environ:
+    # We are in heroku ^_^
+    import django_heroku
+    # Activate Django-Heroku.
+    django_heroku.settings(locals())
+
+else:
+    # Nope not heroku lets use sqlite locally
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }

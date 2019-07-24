@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+	<div id="colorlib-main">
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+					<div class="row mt-2  flex-column align-items-center ml-1 mr-1">
+						<div class="col-md-6 single-device-img">
+							<div class="">
+							{% if device.image == "" %}
+								<img src="{% static 'app/images/coming_soon.png' %}" class="img-fluid"/>
+							{% else %}
+								<img src="{{ phone.image }}" class="img-fluid"/>
+							{% endif %}
+							</div>
+						</div>
+						<div class="col-md-6 mt-4 flex-column justify-content-center align-items-center">
+							<div class="full-spec-container">
+								<h4>Full Spec: </h4>
+								<div><h4>Overall Rating: {{ device.total_rating|floatformat:'2' }}</h4></div>
+							</div>
+							<div class="spec-container">
+								<p><span>Device Name: </span>{{ device.name }}</p>
+								<p><span>Brand: </span> {{ device.brand }}</p>
+								<p><span>Technology: </span> {{ device.technology }}</p>
+								<p><span>GPRS: </span>{{ device.gprs }}</p>
+								<p><span>Edge: </span>{{ device.edge }}</p>
+								<p><span>Announced: </span>{{ device.announced }}</p>
+								<p><span>Status: </span>{{ device.status }}</p>
+								<p><span>Weight: </span>{{ device.weight }}</p>
+								<p><span>Sim: </span>{{ device.sim }}</p>
+								<p><span>Type: </span>{{ device.device_type }}</p>
+								<p><span>Size: </span>{{ device.size }}</p>
+								<p><span>Resolution: </span> {{ device.resolution }}</p>
+								<p><span>Card Slot: </span>{{ device.card_slot }}</p>
+								<p><span>Loud Speaker: </span> {{ device.loud_speaker }}</p>
+								<p><span>WLAN: </span>{{ device.wlan }}</p>
+								<p><span>Bluetooth: </span>{{ device.bluetooth }}</p>
+								<p><span> CPU: </span> {{ device.cpu }}</p>
+								<p><span>Battery: </span> {{ device.battery_c }}</p>
+								<p><span>Sensor: </span>{{ device.sensor }}</p>
+								<p><span>GPU: </span>{{ device.gpu }}</p>
+								<p><span>Internal_memory: </span> {{ device.internal_memory }}</p>
+								<p><span>Operating System: </span> {{ device.os }}</p>
+							</div>
+						</div>
+					</div>
+
+				<div class="row flex-column align-items-center mt-4 mb-4 ml-1 mr-1">
+					<div class="col-md-6 flex-column justify-content-center align-items-center comment-container">
+						<form action="." method="post">
+							{% csrf_token %}
+							<div class="rating-container">
+								<h5>Comments: </h5>
+								<div class="d-flex rate-selector ">
+									<span>Rating: </span>
+									<select id="rate-select" name="rate" required>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</div>
+							</div>
+							<textarea required name="description" rows="4" placeholder="Your Comment here..."></textarea>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+					<div class="col-md-6 mt-3 mb-4">
+						<div class="comment-wrapper">
+							{% for comment in comment %}
+								<div class="user-info">
+									<div><b>{{ comment.user.username }}</b></div>
+								</div>
+								<div class="comment-w">
+									<div>{{ comment.description }}</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+	    </section>
+	</div>
+
+{% endblock content %}

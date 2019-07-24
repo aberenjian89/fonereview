@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% load static %}
+<div id="colorlib-main">
+
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+
+	    	<div class="container">
+			{% for phone in featured_phones %}
+	    		<div class="row d-flex">
+	    			<div class="col-xl-8 py-5 px-md-5">
+
+	    				<div class="row pt-md-4">
+			    			<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex align-items-center">
+										{% if phone.image == "" %}
+											<a href="/device/{{ phone.id }}/" class="img img-2"><img class="img-fluid" src="{% static 'app/images/coming_soon.png' %}"/></a>
+										{% else %}
+												<a href="single.html" class="img img-2"><img class="img-fluid" src="{{ phone.image }}"/></a>
+										{% endif %}
+
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">{{ phone.type }}</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+
+				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>Rating: {{ phone.total_rating }}</a></span>
+				              	</p>
+			              	</div>
+											<p class="mb-3">Device Spec:</p>
+											<p class="ml-2">Name: {{ phone.name }}</p>
+											<p class="ml-2">Brand: {{ phone.brand }}</p>
+											<p class="ml-2">Technology: {{ phone.technology }}</p>
+											<p class="ml-2">Status: {{ phone.status }}</p>
+											<p class="ml-2">Announced: {{ phone.announced }}</p>
+				              <p class="ml-2"><a href="/device/{{ phone.id }}/" class="btn-custom">See Full Spec <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+
+			    		</div><!-- END-->
+
+			    	</div>
+
+	          </div><!-- END COL -->
+			  {% endfor %}
+	    		</div>
+			</section>
+		</div>
+
+{% endblock content %}
