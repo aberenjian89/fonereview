@@ -28,21 +28,14 @@ class Device(models.Model):
   image = models.FileField(upload_to="device_images/",null=True,blank=True)
   total_rating = models.DecimalField(max_digits=2,decimal_places=1,null=True,blank=True)
 
-class Comment(models.Model):
-  description = models.CharField(max_length=160)
 
-  user = models.ForeignKey(
-    User,
-    on_delete = models.CASCADE
-  )
+  def __str__(self):
+    return self.name
 
-  device = models.ForeignKey(
-    Device,
-    on_delete = models.CASCADE
-  )
+
 class Rate(models.Model):
-  # User Rate Type 
-    # 1 : Admin Or SuperAdmin 
+  # User Rate Type
+    # 1 : Admin Or SuperAdmin
     # 2 : Regular User
   user_rate_type = models.IntegerField()
   rating = models.IntegerField()
@@ -56,3 +49,23 @@ class Rate(models.Model):
     Device,
     on_delete = models.CASCADE
   )
+
+  created = models.DateTimeField(auto_now_add=True)
+
+
+class Comment(models.Model):
+  description = models.CharField(max_length=160)
+
+  user = models.ForeignKey(
+    User,
+    on_delete = models.CASCADE
+  )
+
+  device = models.ForeignKey(
+    Device,
+    on_delete = models.CASCADE
+  )
+
+  created = models.DateTimeField(auto_now_add=True)
+
+
