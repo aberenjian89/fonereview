@@ -18,10 +18,6 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from fonereview import views
-
-
-
-
 urlpatterns = [
     path('', views.fonereview_homepage, name='home'),
     path('register/', views.fonereview_register, name='register'),
@@ -29,6 +25,7 @@ urlpatterns = [
     path('logout/', views.fonereview_logout, name='logout'),
     path('about/', views.fonereview_about, name='about'),
     path('contact/', views.fonereview_contact, name='contact'),
+    path('phone/', views.fonereview_phone, name='phone'),
     path('admin/', admin.site.urls),
 ]
 
