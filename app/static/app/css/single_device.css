@@ -2,10 +2,15 @@
     position: relative !important;
 }
 .spec-container {
-    max-height: 400px;
+    max-height: 500px;
     overflow: scroll;
     border: 1px solid #DBD7D7;
     border-radius: 6px;
+}
+
+
+.coming-soon{
+    max-width: 50%;
 }
 
 .spec-container span{
@@ -66,4 +71,14 @@
 .full-spec-container{
     display: flex;
     justify-content: space-between;
+}
+
+.bio-v2{
+    border: 1px solid;
+    border-radius: 50%;
+    text-align: center;
+    background: orange;
+    color: wheat;
+    font-size: 18px;
+    width: 40px !important;
 }

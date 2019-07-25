@@ -1,86 +1,117 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% load static %}
-	<div id="colorlib-main">
-			<section class="ftco-section ftco-no-pt ftco-no-pb">
-					<div class="row mt-2  flex-column align-items-center ml-1 mr-1">
-						<div class="col-md-6 single-device-img">
-							<div class="">
-							{% if device.image == "" %}
-								<img src="{% static 'app/images/coming_soon.png' %}" class="img-fluid"/>
-							{% else %}
-								<img src="{{ phone.image }}" class="img-fluid"/>
-							{% endif %}
-							</div>
-						</div>
-						<div class="col-md-6 mt-4 flex-column justify-content-center align-items-center">
-							<div class="full-spec-container">
-								<h4>Full Spec: </h4>
-								<div><h4>Overall Rating: {{ device.total_rating|floatformat:'2' }}</h4></div>
-							</div>
-							<div class="spec-container">
-								<p><span>Device Name: </span>{{ device.name }}</p>
-								<p><span>Brand: </span> {{ device.brand }}</p>
-								<p><span>Technology: </span> {{ device.technology }}</p>
-								<p><span>GPRS: </span>{{ device.gprs }}</p>
-								<p><span>Edge: </span>{{ device.edge }}</p>
-								<p><span>Announced: </span>{{ device.announced }}</p>
-								<p><span>Status: </span>{{ device.status }}</p>
-								<p><span>Weight: </span>{{ device.weight }}</p>
-								<p><span>Sim: </span>{{ device.sim }}</p>
-								<p><span>Type: </span>{{ device.device_type }}</p>
-								<p><span>Size: </span>{{ device.size }}</p>
-								<p><span>Resolution: </span> {{ device.resolution }}</p>
-								<p><span>Card Slot: </span>{{ device.card_slot }}</p>
-								<p><span>Loud Speaker: </span> {{ device.loud_speaker }}</p>
-								<p><span>WLAN: </span>{{ device.wlan }}</p>
-								<p><span>Bluetooth: </span>{{ device.bluetooth }}</p>
-								<p><span> CPU: </span> {{ device.cpu }}</p>
-								<p><span>Battery: </span> {{ device.battery_c }}</p>
-								<p><span>Sensor: </span>{{ device.sensor }}</p>
-								<p><span>GPU: </span>{{ device.gpu }}</p>
-								<p><span>Internal_memory: </span> {{ device.internal_memory }}</p>
-								<p><span>Operating System: </span> {{ device.os }}</p>
-							</div>
-						</div>
-					</div>
+<div id="colorlib-main">
 
-				<div class="row flex-column align-items-center mt-4 mb-4 ml-1 mr-1">
-					<div class="col-md-6 flex-column justify-content-center align-items-center comment-container">
-						<form action="." method="post">
-							{% csrf_token %}
-							<div class="rating-container">
-								<h5>Comments: </h5>
-								<div class="d-flex rate-selector ">
-									<span>Rating: </span>
-									<select id="rate-select" name="rate" required>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
+<section class="ftco-section ftco-no-pt ftco-no-pb mt-4 mb-4">
+			
+	    	<div class="container">
+						
+	    		<div class="row d-flex">
+	    			<div class="col-xl-12 px-md-5">
+					
+	    				<div class="row">
+			    			<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<img src={{ device.image.url }} />
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">{{ phone.type }}</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		
+				              		<span><i class="icon ion-md-star" style="color:#ebc634"></i> Rating: {{ device.total_rating|floatformat:'2' }}</span>
+				              		<span class="ml-4"><i class="icon ion-md-chatbubbles"  style="color:#2d9ded"></i> User Reviews: {{ comments|length }}</span>
+									
+				              	</p>
+			              	</div>
+				              <!-- <p class="mb-4">{{ phone.description }}</p>
+				             <span><a href="#" class="btn-light"> Specs &amp; Reviews <span class="icon ion-md-send" style="color:#2d9ded"></span> </a></span> -->
+										 	<div class="spec-container">
+												<p><span>Device Name: </span>{{ device.name }}</p>
+												<p><span>Brand: </span> {{ device.brand }}</p>
+												<p><span>Technology: </span> {{ device.technology }}</p>
+												<p><span>GPRS: </span>{{ device.gprs }}</p>
+												<p><span>Edge: </span>{{ device.edge }}</p>
+												<p><span>Announced: </span>{{ device.announced }}</p>
+												<p><span>Status: </span>{{ device.status }}</p>
+												<p><span>Weight: </span>{{ device.weight }}</p>
+												<p><span>Sim: </span>{{ device.sim }}</p>
+												<p><span>Type: </span>{{ device.device_type }}</p>
+												<p><span>Size: </span>{{ device.size }}</p>
+												<p><span>Resolution: </span> {{ device.resolution }}</p>
+												<p><span>Card Slot: </span>{{ device.card_slot }}</p>
+												<p><span>Loud Speaker: </span> {{ device.loud_speaker }}</p>
+												<p><span>WLAN: </span>{{ device.wlan }}</p>
+												<p><span>Bluetooth: </span>{{ device.bluetooth }}</p>
+												<p><span> CPU: </span> {{ device.cpu }}</p>
+												<p><span>Battery: </span> {{ device.battery_c }}</p>
+												<p><span>Sensor: </span>{{ device.sensor }}</p>
+												<p><span>GPU: </span>{{ device.gpu }}</p>
+												<p><span>Internal_memory: </span> {{ device.internal_memory }}</p>
+												<p><span>Operating System: </span> {{ device.os }}</p>
+											</div>
+				            </div>
+						
+									</div>
+									
+								
 								</div>
-							</div>
-							<textarea required name="description" rows="4" placeholder="Your Comment here..."></textarea>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</form>
-					</div>
-					<div class="col-md-6 mt-3 mb-4">
-						<div class="comment-wrapper">
-							{% for comment in comment %}
-								<div class="user-info">
-									<div><b>{{ comment.user.username }}</b></div>
-								</div>
-								<div class="comment-w">
-									<div>{{ comment.description }}</div>
-								</div>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-	    </section>
-	</div>
+						<div class="pt-5 mt-5" style="width: 100%">
+		              <h3 class="mb-5 font-weight-bold">{{ comments|length }} Comment</h3>
+		              <ul class="comment-list">
+                          {% for comment in comments %}
+                            <li class="comment">
+		                        <div class="vcard bio bio-v2">
+                                    {{ comment.user.username|make_list|first|upper }}
+		                        </div>
+		                        <div class="comment-body">
+		                        <h3>{{ comment.user.username }}</h3>
+		                        <div class="meta">{{ comment.created }}</div>
+		                         <p>{{ comment.description }}</p>
+		                        </div>
+                            </li>
+                          {% endfor %}
+		              </ul>
+		              <!-- END comment-list -->
+		              
+		              <div class="comment-form-wrap pt-5">
+		                <h3 class="mb-5">Leave a Review for this Phone</h3>
+		                <form action="." class="p-3 p-md-5 bg-light" method="post">
+                          {% csrf_token %}
+		                  <div class="form-group d-flex align-items-baseline">
+		                    <label for="rating" class="mr-2">Rating: </label>
+                              <select id="rate-select" name="rate" required>
+                                <option value="1">1*</option>
+                                <option value="2">2**</option>
+                                <option value="3">3***</option>
+                                <option value="4">4****</option>
+                                <option value="5">5*****</option>
+                              </select>
+		                  </div>
+		                
+
+		                  <div class="form-group">
+		                    <label for="message">Message</label>
+		                    <textarea name="description" id="id_description" cols="30" rows="10" class="form-control" onresize="none" required></textarea>
+		                  </div>
+		                  <div class="form-group">
+                              <button type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">Post Comment</button>
+		                  </div>
+
+		                </form>
+		              </div>
+		            </div>
+								 
+			    		</div><!-- END-->
+			    		
+			    	</div>
+	    			 
+	          </div><!-- END COL -->
+			 
+			
+			  </div>
+				
+			</section>
+		</div>
 
 {% endblock content %}

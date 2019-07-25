@@ -44,16 +44,16 @@
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
           {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a>
+            <li><a href="{% url 'logout' %}"><i class="icon-user-circle-o"></i> Logout</a>
           {% else %}
-            <li><a href="{% url 'login' %}">Login</a>
+            <li><a href="{% url 'login' %}"><i class="icon-user-circle-o"></i> Login</a>
           {% endif %}
 					| <a href="{% url 'sign-up' %}">Register</a></li>
-					<li class="colorlib-active"><a href="{% url 'home' %}">Home</a></li>
-					<li><a href="{% url 'home' %}">Editor Picks</a></li>
-					<li><a href="{% url 'home' %}">Popular Phones</a></li>
-					<!--<li><a href="{% url 'home' %}">About</a></li>-->
-					<!--<li><a href="{% url 'home' %}">Contact</a></li>-->
+				  <li><a href="{% url 'home' %}"><i class="ion-md-home"></i> Home</a></li>
+					<li><a href="{% url 'home' %}"><i class="ion-md-ribbon"></i> Editor Picks</a></li>
+					<li><a href="{% url 'popular' %}"><i class="icon-trending_up"></i> Popular Phones</a></li>
+					<li><a href="{% url 'about' %}"><i class="icon-info-circle"></i> About</a></li>
+					<li><a href="{% url 'contact' %}"><i class="icon-mail_outline"></i> Contact</a></li>
 				</ul>
 			</nav>
 
@@ -61,11 +61,12 @@
 				<h1 id="colorlib-logo" class="mb-4"><a href="index.html" style="background-image: url({% static 'app/images/logo_bg.jpg' %});">Fone <span>Review</span></a></h1>
 				<div class="mb-5">
 					<h3>Search for Reviews</h3>
-					<form action="#" class="colorlib-subscribe-form">
-            <div class="form-group d-flex">
-            	<div class="icon"><span class="icon-paper-plane"></span></div>
-              <input type="text" class="form-control" placeholder="Enter Phone Model">
-            </div>
+            <form action="#" class="colorlib-subscribe-form" method="post">
+                {% csrf_token %}
+                <div class="form-group d-flex">
+                    <div class="icon"><button type="submit" class="icon-paper-plane" style="border: none"></button></div>
+                  <input type="text" name="phone_model" class="form-control" placeholder="Enter Phone Model">
+                </div>
           </form>
 				</div>
 				<p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
