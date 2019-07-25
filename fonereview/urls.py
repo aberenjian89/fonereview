@@ -19,6 +19,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from users import views as User_views
 from app import views as App_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', App_views.fonereview_homepage, name="home"),
@@ -27,8 +29,12 @@ urlpatterns = [
     path('sign-out/', User_views.log_out, name='logout'),
     path('edit-profile/',User_views.edit_profile),
     path('getlatest/',App_views.get_device_info),
-    path('device/<device_id>/',App_views.fonereview_device_single,),
+    path('device/<device_id>/',App_views.fonereview_device_single),
+    path('popular_phone/',App_views.fonereview_popular,name='popular'),
+    path('about/',App_views.fonereview_about, name='about'),
+    path('contact/',App_views.fonereview_contact, name='contact'),    
     path('admin/', admin.site.urls),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

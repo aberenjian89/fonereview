@@ -16,8 +16,9 @@ def get_device_info(request):
 
 
 def fonereview_homepage(request):
+
     featured_phones = Device.objects.all()[:15]
-    
+
     context = {
 
         'featured_phones': featured_phones,
@@ -27,6 +28,11 @@ def fonereview_homepage(request):
     }
     return render(request, 'pages/recent_phone.html', context)
 
+
+def fonereview_popular(request):
+    popular_phone  = Device.objects.all().order_by('-total_rating')
+
+    return render(request,'pages/popular_phone.html', {'popular_phone': popular_phone})
 
 @login_required(login_url='/sign-in/')
 def fonereview_device_single(request,device_id):
@@ -56,7 +62,7 @@ def fonereview_device_single(request,device_id):
 
         ctx = {
             'device': device,
-            'comment': Comment.objects.filter(device=device).order_by('-created'),
+            'comments': Comment.objects.filter(device=device).order_by('-created'),
         }
 
         return render(request, 'pages/single.html', ctx)
@@ -65,7 +71,7 @@ def fonereview_device_single(request,device_id):
         device_comment = Comment.objects.filter(device=device)
         ctx = {
             'device': device,
-            'comment': Comment.objects.filter(device=device).order_by('-created'),
+            'comments': Comment.objects.filter(device=device).order_by('-created'),
         }
         return render(request,'pages/single.html',ctx)
 
@@ -75,7 +81,7 @@ def fonereview_about(request):
         'logo': 'static/app/images/logo_bg.jpg'
 
     }
-    return render(request, 'pages/logout.html', context)
+    return render(request, 'pages/about.html', context)
 
 
 def fonereview_contact(request):
@@ -84,7 +90,7 @@ def fonereview_contact(request):
         'logo': 'static/app/images/logo_bg.jpg'
 
     }
-    return render(request, 'pages/logout.html', context)
+    return render(request, 'pages/contact.html', context)
 
 
 def get_over_all_rate(device):
