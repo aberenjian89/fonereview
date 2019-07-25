@@ -27,7 +27,7 @@ class Device(models.Model):
   os = models.CharField(max_length=100)
   image = models.FileField(upload_to="device_images/",null=True,blank=True)
   total_rating = models.DecimalField(max_digits=2,decimal_places=1,null=True,blank=True)
-
+  #change the var to 100
 
   def __str__(self):
     return self.name
