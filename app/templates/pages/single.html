@@ -9,11 +9,11 @@
               {% load static %}
               <div class="blog-entry ftco-animate d-md-flex">
                 {% if phone.image %}
-                <a href="/device/{{ phone.id }}/"
+                <a href="/device/{{ phone.id }}/" class="image-container"
                   ><img class="img-fluid" src="{{ phone.image.url }}"
                 /></a>
                 {% else %}
-                <a href="/device/{{ phone.id }}/"
+                <a href="/device/{{ phone.id }}/" class="image-container"
                   ><img
                     class="coming-soon"
                     src="{% static 'app/images/coming_soon.png' %}"
