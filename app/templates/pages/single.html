@@ -26,7 +26,7 @@
                   <div class="meta-wrap">
                     <p class="meta">
                       <span
-                        ><i class="icon ion-md-star" style="color:#ebc634"></i>
+                        ><i class="ion-md-star" style="color:#ebc634"></i>
                         Rating:
                         {{ device.total_rating }}</span
                       >
@@ -73,7 +73,7 @@
             </div>
             <div class="pt-5 mt-5" style="width: 100%">
               <h3 class="mb-5 font-weight-bold">
-                {{ comments | length }} Comment
+                {{ comments | length }} Reviews
               </h3>
               <ul class="comment-list">
                 {% for comment in comments %}
@@ -94,20 +94,28 @@
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a Review for this Phone</h3>
                 <form action="." class="p-3 p-md-5 bg-light" method="post">
+                 <label>Rate this Phone</label>
                   {% csrf_token %}
                   <div class="form-group d-flex align-items-baseline">
-                    <label for="rating" class="mr-2">Rating: </label>
-                    <select id="rate-select" name="rate" required>
-                      <option value="1">1*</option>
-                      <option value="2">2**</option>
-                      <option value="3">3***</option>
-                      <option value="4">4****</option>
-                      <option value="5">5*****</option>
-                    </select>
+                  
+                  <div class="rate">
+                    
+                    <input type="radio" id="star5" name="rate" value="5" />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" />
+                    <label for="star1" title="text">1 star</label>
+                    
+                  </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="message">Message</label>
+                    <label for="message">Write your Reviews</label>
                     <textarea
                       name="description"
                       id="id_description"
@@ -124,7 +132,7 @@
                       value="Post Comment"
                       class="btn py-3 px-4 btn-primary"
                     >
-                      Post Comment
+                      Submit Review
                     </button>
                   </div>
                 </form>
