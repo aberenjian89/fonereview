@@ -124,7 +124,7 @@ if 'DYNO' in os.environ:
     import django_heroku
     # Activate Django-Heroku.
     django_heroku.settings(locals())
-    DEBUG = False
+    # DEBUG = False
 
 else:
     # Nope not heroku lets use sqlite locally
