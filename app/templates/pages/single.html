@@ -8,12 +8,12 @@
             <div class="col-md-12">
               {% load static %}
               <div class="blog-entry ftco-animate d-md-flex">
-                {% if phone.image %}
-                <a href="/device/{{ phone.id }}/" class="image-container"
-                  ><img class="img-fluid" src="{{ phone.image.url }}"
+                {% if device.image %}
+                <a href="/device/{{ device.id }}/" class="image-container"
+                  ><img class="img-fluid" src="{{ device.image.url }}"
                 /></a>
                 {% else %}
-                <a href="/device/{{ phone.id }}/" class="image-container"
+                <a href="/device/{{ device.id }}/" class="image-container"
                   ><img
                     class="coming-soon"
                     src="{% static 'app/images/coming_soon.png' %}"
@@ -21,7 +21,7 @@
                 {% endif %}
                 <div class="text text-2 pl-md-4">
                   <h3 class="mb-2">
-                    <a href="single.html">{{ phone.type }}</a>
+                    <a href="/device/{{ device.id }}/">{{ device.name }}</a>
                   </h3>
                   <div class="meta-wrap">
                     <p class="meta">
